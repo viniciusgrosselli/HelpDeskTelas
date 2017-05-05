@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form acceptcharset="ISO-8859-1">
+                    <p:growl id="growlMessages"/>
+
+                    <p:panelGrid columns="2">
+
+                        <f:facet name="header">
+                            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+                            <h:outputText value="Manutenção de Chamado"/>
+                        </f:facet>
+
+
+                        <h:outputLabel value="Código:" for="id" />
+                        <p:inputText size="4" readonly="true" id="id" value="#{chamadoControle.objeto.id}" title="Código do Chamado" />
+
+                        <p:commandLink id="pessoa1" value="Cliente:" ajax="true"/> 
+                        <p:autoComplete id="pessoa" style="width:600px" dropdown="true"
+                                        multiple="false" forceSelection="true" var="obj3"
+                                        itemLabel="#{obj3.nome}" itemValue="#{obj3}"
+                                        value="#{chamadoControle.objeto.pessoa}"
+                                        converter="#{chamadoControle.converterPessoa}"
+                                        completeMethod="#{chamadoControle.completePessoa}" requiredMessage="O campo cliente cliente é Obrigatório!" required="true" />
+
+                        <p:commandLink id="equip" value="Equipamento:" ajax="true"/> 
+                        <p:autoComplete id="equip1" style="width:600px" dropdown="true"
+                                        multiple="false" forceSelection="true" var="obj1"
+                                        itemLabel="#{obj1.tipo}" itemValue="#{obj1}"
+                                        value="#{chamadoControle.objeto.equipamento}"
+                                        converter="#{chamadoControle.converterEquipamento}"
+                                        completeMethod="#{chamadoControle.completeEquipamento}" requiredMessage="O campo equipamento é Obrigatório!" required="true" />
+
+                        <h:outputLabel value="Problema:" for="problema" />
+                        <p:inputText size="30" id="problema" maxlength="60" value="#{chamadoControle.objeto.problema}" title="Problema" required="true" requiredMessage="O campo problema é Obrigatório!"/>
+
+                        <h:outputLabel value="Observações:" for="observacoes" />
+                        <p:inputTextarea  id="obs"  maxlength="60" value="#{chamadoControle.objeto.observacoes}" cols="30" title="Observações:"/>
+
+                        <h:outputLabel value="Prioridade:" for="prioridade" />
+                        <p:selectOneMenu value="#{chamadoControle.objeto.prioridade}" >
+                            <f:selectItem itemLabel="Alta" itemValue="Alta" />
+                            <f:selectItem itemLabel="Média" itemValue="Média" />
+                            <f:selectItem itemLabel="Baixa" itemValue="Baixa" />
+                        </p:selectOneMenu>
+
+
+                        <h:outputLabel value="Data de Abertura:" for="dataAbertura" />
+                        <p:calendar size="15" id="dataabertura" pattern="dd/MM/yyyy : HH:mm" disabled="true" maxlength="10" value="#{chamadoControle.objeto.dataAbertura}" timeZone="America/Sao_Paulo" title="Data de Abertura:"
+                                    required="true" readonly="true" requiredMessage="O campo data de abertura é Obrigatório!"/>
+
+                        <h:outputLabel value="Previsão para Atendimento:" for="dataMarcada" />
+                        <p:calendar pattern="dd/MM/yyyy HH:mm" size="15" id="datamarcada" showOn="button" maxlength="10" value="#{chamadoControle.objeto.dataMarcada}" title="Data Marcada:"  timeZone="America/Sao_Paulo" locale="pt_BR" 
+                                    required="true" requiredMessage="O campo data para atendimento é Obrigatório!"/>
+
+
+                        <p:commandLink id="funcionario" value="Responsável:" ajax="true"/> 
+                        <p:autoComplete id="fun" style="width:600px" dropdown="true"
+                                        multiple="false" forceSelection="true" var="obj5"
+                                        itemLabel="#{obj5.nome}" itemValue="#{obj5}"
+                                        value="#{chamadoControle.objeto.funcionario}"
+                                        converter="#{chamadoControle.converterFuncionario}"
+                                        completeMethod="#{chamadoControle.completeFuncionario}" requiredMessage="O campo responsável é Obrigatório!" required="true" />
+
+                        <f:facet name="footer">
+
+                            <div align="center">
+                                <p:commandButton value="Cancelar" action="#{chamadoControle.cancelar()}" immediate="true" ajax="false" />
+                                <p:commandButton action="#{chamadoControle.gravar()}" value="Salvar" ajax="false" />
+                            </div>
+
+                        </f:facet>
+                    </p:panelGrid>
+
+                    <p:watermark for="pessoa" value="Obrigatório"/>
+                    <p:watermark for="equip1" value="Obrigatório"/>
+                    <p:watermark for="problema" value="Obrigatório"/>
+                    <p:watermark for="obs" value="Opcional"/>
+                    <p:watermark for="datamarcada" value="Obrigatório"/>
+                    <p:watermark for="fun" value="Obrigatório"/>
+
+                </h:form>
+            </f:view>
+        </ui:define>    
+    </ui:composition>
+</html>

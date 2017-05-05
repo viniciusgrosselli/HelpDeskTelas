@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form acceptcharset="ISO-8859-1">
+                    <p:growl id="growlMessages"/>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+                            <h:outputText value="Manutenção de Chamado"/>
+                        </f:facet>
+                        <h:outputLabel value="Código:" for="id" />
+                        <p:inputText size="4" disabled="true" id="id" value="#{chamadoControle.objeto.id}"  title="Código do Chamado" />
+
+                        <p:commandLink id="pessoa1" value="Cliente:" ajax="true" /> 
+                        <p:autoComplete id="pessoa" style="width:600px"  dropdown="true"
+                                        multiple="false" forceSelection="true" var="obj"
+                                        itemLabel="#{obj.nome}" itemValue="#{obj}"
+                                        value="#{chamadoControle.objeto.pessoa}"
+                                        converter="#{chamadoControle.converterPessoa}"
+                                        completeMethod="#{chamadoControle.completePessoa}" disabled="true" requiredMessage="O campo Estado deve ser informado!" required="true" />
+
+                        <p:commandLink id="equip" value="Equipamento:" ajax="true"/> 
+                        <p:autoComplete id="equip1" style="width:600px"  dropdown="true"
+                                        multiple="false" forceSelection="true" var="obj"
+                                        itemLabel="#{obj.tipo}" itemValue="#{obj}"
+                                        value="#{chamadoControle.objeto.equipamento}"
+                                        converter="#{chamadoControle.converterEquipamento}"
+                                        completeMethod="#{chamadoControle.completeEquipamento}" disabled="true" requiredMessage="O campo Estado deve ser informado!" required="true" />
+
+                        <h:outputLabel value="Problema:" for="problema" />
+                        <p:inputText size="30" id="problema"  maxlength="60" disabled="true" value="#{chamadoControle.objeto.problema}" required="true" requiredMessage="O nome da cidade é obrigatório!"/>
+
+                        <h:outputLabel value="Observações:" for="observacoes" />
+                        <p:inputTextarea  id="obj" disabled="true" maxlength="60" value="#{chamadoControle.objeto.observacoes}" required="true" requiredMessage="O nome da cidade é obrigatório!"/>
+
+                        <p:commandLink id="servico" value="Serviço:" ajax="true" /> 
+                        <p:autoComplete id="servico1" style="width:600px" dropdown="true"
+                                        multiple="false" forceSelection="true" var="obj"
+                                        itemLabel="#{obj.descricao}" itemValue="#{obj}"
+                                        value="#{chamadoControle.objeto.servico}"
+                                        converter="#{chamadoControle.converterServico}"
+                                        completeMethod="#{chamadoControle.completeServico}" requiredMessage="O campo serviço é Obrigatório!" required="true" />
+
+
+                        <h:outputLabel value="Resolução do Problema:" for="resolucao" />
+                        <p:inputTextarea id="resolução" maxlength="255" value="#{chamadoControle.objeto.resolucao}" cols="30" title="Resolução" required="true" requiredMessage="O campo resolução do problema é Obrigatório!"/>
+
+                        <h:outputLabel value="Data do Fechamento:" for="dataFechamento" />
+                        <p:calendar size="15"  id="datafechamento" value="#{chamadoControle.objeto.dataFechamento}" readonly="true"  pattern="dd/MM/yyyy HH:mm"  timeZone="America/Sao_Paulo" locale="pt_BR" required="true" requiredMessage="O campo data de fechamento é Obrigatório!"/>
+
+                        <h:outputLabel value="Situação Atual:" for="status"/>
+                        <p:selectOneMenu  value="#{chamadoControle.objeto.status}" editable="false">
+                            <f:selectItem itemLabel="#{chamadoControle.objeto.status}" itemValue="Encerrado" />
+                        </p:selectOneMenu>
+
+                        <f:facet name="footer">
+                            <div align="center">
+                                <p:commandButton value="Cancelar" action="#{chamadoControle.cancelar()}" immediate="true" ajax="false" />
+                                <p:commandButton action="#{chamadoControle.gravar()}" value="Salvar" ajax="false"/>
+                            </div>
+                        </f:facet>
+                    </p:panelGrid>
+                    <p:watermark for="datafechamento" value="Obrigatório"/>
+                    <p:watermark for="resolução" value="Obrigatório"/>
+                    <p:watermark for="servico1" value="Obrigatório"/>
+                </h:form>
+            </f:view>
+
+        </ui:define>    
+    </ui:composition>
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form id="one">
+                    <p:messages id="growlMessages"  autoUpdate="true"/>
+                    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+
+                    <p:panelGrid columns="6">
+                        <p:commandButton action="#{usuarioControle.incluir()}" value="Incluir novo Usuário" ajax="false" />
+                    </p:panelGrid>
+
+                    <p:dataTable id="listagem" value="#{usuarioControle.lista}" var="item" paginator="true" rows="10" filteredValue="#{usuarioControle.filtroUsuario}">
+
+                        <p:column id="idcol" filterBy="id" headerText="id"  filterMatchMode="exact">
+                            <f:facet name="header">
+                                <h:outputText value="Código"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+
+                        <p:column id="nomecol" filterBy="funcionario.nome" headerText="nome"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{item.funcionario.nome}"/>
+                        </p:column>
+
+                        <p:column id="logincol" filterBy="login" headerText="login"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Login"/>
+                            </f:facet>
+                            <h:outputText value="#{item.login}"/>
+                        </p:column>
+
+                        <p:column id="tipocol" filterBy="tipo" headerText="tipo"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Função"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipo}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:graphicImage value="../../../imagens/icones/editar.png"/>
+                            <h:commandLink action="#{usuarioControle.alterar(item.id)}" value=" Alterar" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:graphicImage value="../../../imagens/icones/delete.png"/>
+                            <p:commandLink action="#{usuarioControle.excluir(item.id)}" value=" Excluir" onclick="
+                                    if (!confirm('Tem certeza que deseja excluir o item: #{item.login}?')) {
+                                        return false;
+                                    }
+                                           " update="one" ajax="false"  />
+
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+        </ui:define>    
+    </ui:composition>
+</html>

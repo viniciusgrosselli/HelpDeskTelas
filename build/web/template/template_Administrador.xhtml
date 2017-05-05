@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Help Desk</title>
+            </f:facet>
+
+            <style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
+
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+        </h:head>
+
+
+        <h:body  onload="#{loginControle.verificarLogin()}" style="background-image: url(/HelpDeskView/imagens/imagens/fundo.jpg) !important">
+
+            <p:layout fullPage="true" >
+
+                <p:layoutUnit id="top" position="north" size="50">
+                    <h:form>
+                        <p:menubar>
+
+                            <p:submenu label="Administrador">
+
+
+
+                                <p:submenu label="Equipamentos">
+                                    <p:menuitem value="Incluir" url="/faces/views/equipamento/equipamentoForm.xhtml" ajax="false"/>
+                                    <p:menuitem value="Listar" url="/faces/views/equipamento/equipamentoList.xhtml" ajax="false"/>
+                                </p:submenu>
+                                
+                                <p:submenu label="Peças">
+                                    <p:menuitem value="Incluir" url="/faces/views/peca/pecaForm.xhtml" ajax="false"/>
+                                    <p:menuitem value="Listar" url="/faces/views/peca/pecaList.xhtml" ajax="false"/>
+                                </p:submenu>
+                                
+                                <p:submenu label="Serviços">
+                                    <p:menuitem value="Incluir" url="/faces/views/servico/servicoForm.xhtml" ajax="false"/>
+                                    <p:menuitem value="Listar" url="/faces/views/servico/servicoList.xhtml" ajax="false"/>
+                                </p:submenu>
+
+                                <p:submenu label="Estados">
+                                    <p:menuitem value="Incluir" url="/faces/views/estado/estadoForm.xhtml" ajax="false"/>
+                                    <p:menuitem value="Listar" url="/faces/views/estado/estadoList.xhtml" ajax="false"/>
+                                </p:submenu>
+                                
+                                <p:submenu label="Cidades">
+                                    <p:menuitem value="Incluir" url="/faces/views/cidade/cidadeForm.xhtml" ajax="false"/>
+                                    <p:menuitem value="Listar" url="/faces/views/cidade/cidadeList.xhtml" ajax="false"/>
+                                </p:submenu>
+
+
+
+                                <p:submenu label="Funcionários">
+                                    <p:menuitem value="Incluir" url="/faces/views/funcionario/funcionarioForm.xhtml" ajax="false"/>
+                                    <p:menuitem value="Listar" url="/faces/views/funcionario/funcionarioList.xhtml" ajax="false"/>
+                                </p:submenu>
+
+                                <p:submenu label="Usuários">
+                                    <p:menuitem value="Incluir" url="/faces/views/usuario/usuarioForm.xhtml" ajax="false"/>
+                                    <p:menuitem value="Listar" url="/faces/views/usuario/usuarioList.xhtml" ajax="false"/>
+                                </p:submenu>
+
+                            </p:submenu>
+
+                            <p:submenu label="Cliente">
+
+                                <p:submenu label="Fisico">
+                                    <p:menuitem value="Incluir" url="/faces/views/pessoafis/pessoafisForm.xhtml" ajax="false"/>
+                                    <p:menuitem value="Listar" url="/faces/views/pessoafis/pessoafisList.xhtml" ajax="false"/> 
+                                </p:submenu>
+
+                                <p:submenu label="Juridico">
+                                    <p:menuitem value="Incluir" url="/faces/views/pessoajur/pessoajurForm.xhtml" ajax="false"/>
+                                    <p:menuitem value="Listar" url="/faces/views/pessoajur/pessoajurList.xhtml" ajax="false"/>
+                                </p:submenu>
+
+                            </p:submenu>
+
+                            <p:submenu label="Chamado">
+
+                                <p:menuitem value="Novo Chamado" url="/faces/views/chamado/chamadoForm.xhtml" ajax="false"/> 
+                                <p:submenu label="Listar">
+
+                                    <p:menuitem value="Chamados Abertos" url="/faces/views/chamado/chamadoList.xhtml" ajax="false"/>
+                                    <p:menuitem value="Chamados Encerrados" url="/faces/views/chamado/encerradoList.xhtml" ajax="false"/> 
+
+                                </p:submenu> 
+                            </p:submenu>
+
+
+
+     
+                                                        <p:submenu label="Relatórios">
+                                <p:menuitem value="Relatório Cidades" action="#{relatorioControle.relCidade}" ajax="false" />
+                                <p:menuitem value="Relatório Estados" action="#{relatorioControle.relEstado}" ajax="false" />
+                                <p:menuitem value="Relatório Peças" action="#{relatorioControle.relPeca}" ajax="false" />
+                                <p:menuitem value="Relatório Serviços" action="#{relatorioControle.relServico}" ajax="false" />
+                                <p:menuitem value="Relatório Usuários" action="#{relatorioControle.relUser}" ajax="false" />
+                                <p:menuitem value="Relatório Clientes" action="#{relatorioControle.relCliente}" ajax="false" />
+                                
+                            </p:submenu>
+
+                            
+
+                            <p:menuitem value="Sair" action="#{loginControle.sair()}" ajax="false"/>  
+                        </p:menubar>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="bottom" position="south" size="60" style="text-align: center">
+
+                    <h:form>
+                        <h:outputText value="Help Desk"/><br/>
+                        <h:outputText value="Desenvolvido por Vinicius Grosselli - Todos os Direitos Reservados"/>
+                        <h:outputText value="Bem Vindo! #{loginControle.usuarioLogado.funcionario.nome}" style="position: absolute; right: 5%"/>
+                        <p:commandLink  action="#{loginControle.sair()}" style="position: absolute; right: 1%; margin-top: -1%">
+                            <p:graphicImage value="#{pageContext.request.contextPath}/imagens/icones/sair.png"/>
+                        </p:commandLink>
+
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="left" position="west" collapsed="true" size="300" resizable="true" visible="true" closable="true" collapsible="true" header="Ferramentas" minSize="200">
+                    <p:accordionPanel>
+                        <p:tab title="Calendário">
+                            <br />
+                            <p:calendar mode="inline" navigator="none" locale="pt"/>
+                            <br />
+                        </p:tab>
+
+                        <p:tab title="Calculadora">
+
+                        </p:tab>
+
+                    </p:accordionPanel>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="right" position="east" size="250" header="Chamados Recentes" collapsed="true" resizable="true" closable="true" collapsible="true"
+                              style="text-align:center">
+
+                </p:layoutUnit>
+
+                <p:layoutUnit id="center" position="center">
+
+
+                    <ui:insert name="conteudo"/>
+
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+
+
+        </h:body>
+
+    </f:view>
+</html>

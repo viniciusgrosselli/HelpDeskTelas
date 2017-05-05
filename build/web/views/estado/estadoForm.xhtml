@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form acceptcharset="ISO-8859-1">
+                    <p:growl id="growlMessages"/>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+                            <h:outputText value="Manutenção de Estado"/>
+                        </f:facet>
+
+                        <h:outputLabel value="Código:" for="id" />
+                        <p:inputText size="4" readonly="true" id="id" value="#{estadoControle.objeto.id}" title="Código da Estado" />
+
+                        <h:outputLabel value="Nome:" for="nome" />
+                        <p:inputText size="30" id="nome" value="#{estadoControle.objeto.nome}" title="Nome" required="true" requiredMessage="O nome do Estado é obrigatório!" maxlength="100"/>
+
+                        <h:outputLabel value="UF:" for="uf" />
+                        <p:inputText size="10" id="uf" value="#{estadoControle.objeto.uf}" title="UF" required="true" requiredMessage="A UF do Estado é obrigatória!" maxlength="2"/>
+
+                        <f:facet name="footer">
+                            <div align="center">
+                                <p:commandButton value="Cancelar" action="#{estadoControle.cancelar()}" immediate="true" ajax="false" />
+                                <p:commandButton action="#{estadoControle.gravar}" value="Gravar" ajax="false"/>
+                            </div>
+                        </f:facet>
+                    </p:panelGrid>
+
+                    <p:watermark for="nome" value="Obrigatório!"/>
+                    <p:watermark for="uf" value="Obrigatório!"/>
+                </h:form>
+            </f:view>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

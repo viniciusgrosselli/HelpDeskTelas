@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form acceptcharset="ISO-8859-1">
+                    <p:growl id="growlMessages"/>
+                    <p:panelGrid columns="2">
+
+                        <f:facet name="header">
+                            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+                            <h:outputText value="Manutenção de Peças"/>
+                        </f:facet>
+
+                        <h:outputLabel value="Código:" for="id" />
+                        <p:inputText size="4" readonly="true" id="id" value="#{pecaControle.objeto.id}" title="Código da Peã" />
+
+                        <h:outputLabel value="Descrição:" for="descricao" />
+                        <p:inputTextarea id="descricao" value="#{pecaControle.objeto.descricao}" title="Descrição" required="true" requiredMessage="A descrição é obrigatória!" maxlength="40"/>
+
+                        <h:outputLabel value="Garantia:" for="garantia" />
+                        <p:inputTextarea id="garantia" value="#{pecaControle.objeto.garantia}" title="Garantia" required="true" requiredMessage="A Garantia é obrigatória!" maxlength="40"/>
+                        
+                        <h:outputLabel value="Marca:" for="marca" />
+                        <p:inputText size="20" id="marca" value="#{pecaControle.objeto.marca}" title="Marca" required="true" requiredMessage="A marca é obrigatória!" maxlength="40"/>
+
+                        <h:outputLabel value="Valor:" for="valor" />
+                        <p:inputTextarea id="valor" value="#{pecaControle.objeto.valor}" title="Valor" required="true" requiredMessage="O valor é obrigatório!" maxlength="40"/>
+                        
+                        <h:outputLabel value="Tipo do Equipamento:" for="tipo_equipamento" />
+                        <p:autoComplete id="tipo" style="width:600px" dropdown="true"
+                                        multiple="false" forceSelection="true" var="obj"
+                                        itemLabel="#{obj.tipo}" itemValue="#{obj}"
+                                        value="#{pecaControle.objeto.equipamento}"
+                                        converter="#{pecaControle.converterEquipamento}"
+                                        completeMethod="#{pecaControle.completeEquipamento}" requiredMessage="O campo equipamento é obrigatório!" required="true" />
+
+                        <f:facet name="footer">
+                            <div align="center">
+                                <p:commandButton value="Cancelar" action="#{pecaControle.cancelar()}" immediate="true" ajax="false" />
+                                <p:commandButton action="#{pecaControle.gravar}" value="Gravar" ajax="false"/>
+                            </div>
+                        </f:facet>
+                    </p:panelGrid>
+                    <p:watermark for="descricao" value="Obrigatório!"/>
+                    <p:watermark for="garantia" value="Obrigatório!"/>
+                    <p:watermark for="marca" value="Obrigatório!"/>
+                    <p:watermark for="valor" value="Obrigatório!"/>
+                    <p:watermark for="tipo" value="Obrigatório!"/>
+                </h:form>
+            </f:view>
+
+        </ui:define>
+    </ui:composition>
+</html>
+

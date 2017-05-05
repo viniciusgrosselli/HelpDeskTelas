@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form id="one">
+                    <p:messages id="growlMessages"  autoUpdate="true"/>
+                    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />   
+                    <p:panelGrid columns="1">
+                        <p:commandButton action="#{pessoafisControle.incluir}" value="Incluir uma Pessoa Física" ajax="false"/>
+                    </p:panelGrid>
+
+                    <p:dataTable id="listagem" value="#{pessoafisControle.lista}" var="item" paginator="true" rows="10" filteredValue="#{pessoafisControle.filtroPfis}">
+
+                        <p:column id="idcol" filterBy="id" headerText="id"  filterMatchMode="exact">
+                            <f:facet name="header">
+                                <h:outputText value="Código"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+
+                        <p:column id="nomcol" filterBy="nome" headerText="nome"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </p:column>
+
+                        <p:column id="sobcol" filterBy="sobrenome" headerText="sobrenome"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Sobrenome"/>
+                            </f:facet>
+                            <h:outputText value="#{item.sobrenome}"/>
+                        </p:column>
+
+                        <p:column id="endcol" filterBy="endereco" headerText="endereco"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Endereço"/>
+                            </f:facet>
+                            <h:outputLink id="end" value="#">
+                                <h:outputText value="#{item.endereco}"/>
+                            </h:outputLink>
+                            <p:tooltip for="end" value="Cidade: #{item.cidade.nome} ; Bairro: #{item.bairro} ; CEP: #{item.cep};" showEffect="fade" hideEffect="fade" />
+                        </p:column>
+
+                        <p:column id="rgcol" filterBy="rg" headerText="rg"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="RG"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rg}"/>
+                        </p:column>
+
+                        <p:column id="cpfcol" filterBy="cpf" headerText="cpf"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="CPF"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cpf}"/>
+                        </p:column>
+
+                        <p:column id="telcol" filterBy="telefone" headerText="telefone"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Telefone"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telefone}"/>
+                        </p:column>
+
+                        <p:column id="celcol" filterBy="celular" headerText="celular"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Celular"/>
+                            </f:facet>
+                            <h:outputText value="#{item.celular}"/>
+                        </p:column>
+
+                        <p:column id="emailcol" filterBy="email" headerText="email"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:graphicImage value="../../../imagens/icones/editar.png"/>
+                            <h:commandLink action="#{pessoafisControle.alterar(item.id)}" value="Alterar" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:graphicImage value="../../../imagens/icones/delete.png"/>
+                            <p:commandLink action="#{pessoafisControle.excluir(item.id)}" value="Excluir" onclick="
+                                    if (!confirm('Tem certeza que deseja excluir o item:  #{item.nome}?')) {
+                                        return false;
+                                    }
+                                           " update="one" ajax="false"/>
+                        </p:column>
+                    </p:dataTable>
+
+
+                </h:form>
+            </f:view>
+
+        </ui:define>    
+    </ui:composition>
+</html>

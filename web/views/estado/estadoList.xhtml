@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form id="one">
+                    <p:messages id="growlMessages"  autoUpdate="true"/>
+                    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />  
+                    <p:panelGrid columns="1">
+                        <p:commandButton action="#{estadoControle.incluir}" value="Incluir novo Estado" ajax="false"/>
+                    </p:panelGrid>
+                    <p:dataTable id="listagem" value="#{estadoControle.lista}" var="item" paginator="true" rows="10" filteredValue="#{estadoControle.filtroEstado}">
+
+                        <p:column id="idcol" filterBy="id" headerText="id"  filterMatchMode="exact">
+                            <f:facet name="header">
+                                <h:outputText value="Código"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+
+                        <p:column id="nomecol" filterBy="nome" headerText="nome"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </p:column>
+
+                        <p:column id="ufcol" filterBy="uf" headerText="uf"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="UF"/>
+                            </f:facet>
+                            <h:outputText value="#{item.uf}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:graphicImage value="../../../imagens/icones/editar.png"/>
+                            <h:commandLink action="#{estadoControle.alterar(item.id)}" value="Alterar" />
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:graphicImage value="../../../imagens/icones/delete.png"/>
+                            <p:commandLink action="#{estadoControle.excluir(item.id)}" value="Excluir" onclick="
+                                    if (!confirm('Tem certeza que deseja excluir o item:  #{item.nome}?')) {
+                                        return false;
+                                    }
+                                           " update="one" ajax="false"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+
+        </ui:define>    
+    </ui:composition>
+</html>

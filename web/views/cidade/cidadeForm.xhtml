@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form acceptcharset="ISO-8859-1">
+                    <p:growl id="growlMessages"/>
+                    <p:panelGrid columns="2">
+
+                        <f:facet name="header">
+                            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+                            <h:outputText value="Manutenção de Cidade"/>
+                        </f:facet>
+
+
+                        <h:outputLabel value="Código:" for="id" />
+                        <p:inputText size="4" readonly="true" id="id" value="#{cidadeControle.objeto.id}" title="Código da Cidade" />
+
+                        <h:outputLabel value="Nome:" for="nome" />
+                        <p:inputText size="30" id="nome"  maxlength="60" value="#{cidadeControle.objeto.nome}" title="Nome" required="true" requiredMessage="O nome da cidade é obrigatório!"/>
+
+                        <h:outputLabel value="Estado:"  for="estado"/> 
+                        <p:autoComplete id="estado" style="width:600px" dropdown="true"
+                                        multiple="false" forceSelection="true" var="obj"
+                                        itemLabel="#{obj.nome}" itemValue="#{obj}"
+                                        value="#{cidadeControle.objeto.estado}"
+                                        converter="#{cidadeControle.converterEstado}"
+                                        completeMethod="#{cidadeControle.completeEstado}" requiredMessage="O campo Estado deve ser informado!" required="true" />
+
+
+                        <f:facet name="footer">
+                            <div align="center">
+                                <p:commandButton value="Cancelar" action="#{cidadeControle.cancelar()}" immediate="true" ajax="false" />
+                                <p:commandButton action="#{cidadeControle.gravar()}" value="Salvar" ajax="false" />
+                            </div>
+                        </f:facet>
+
+                    </p:panelGrid>
+                    <p:watermark for="nome" value="Obrigatório"/>
+                    <p:watermark for="estado" value="Obrigatório"/>
+                </h:form>
+            </f:view>
+
+        </ui:define>    
+    </ui:composition>
+</html>

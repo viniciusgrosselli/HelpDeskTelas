@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      onshow="#{chamadoControle.filtrar()}"
+      >
+
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo" >
+
+            <f:view contentType="text/html" encoding="ISO-8859-1" >
+                <h:form id="one" >
+                    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+                    <p:dataTable id="listagem" value="#{chamadoControle.listaencerrados}" var="item"  paginator="true" rows="20" filteredValue="#{chamadoControle.filtroChamado}">
+                        <p:column id="idcol" filterBy="id" headerText="id"  filterMatchMode="exact">  
+                            <f:facet name="header">
+                                <h:outputText value="Código"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column id="nomecol" filterBy="pessoa.nome" headerText="nome"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Cliente"/>
+                            </f:facet>
+                            <h:outputLink id="pessoa" value="#">  
+                                <h:outputText value="#{item.pessoa.nome}"/> 
+                            </h:outputLink>  
+                            <p:tooltip for="pessoa"  value="Cidade: #{item.pessoa.cidade.nome} ; 
+                                       Endereço: #{item.pessoa.endereco} ; 
+                                       Bairro: #{item.pessoa.bairro} ; 
+                                       Telefone: #{item.pessoa.telefone};
+                                       Celular: #{item.pessoa.celular} ;               
+                                       " showEffect="fade" hideEffect="fade" />
+                        </p:column>
+                        <p:column id="equicol" filterBy="equipamento.tipo" headerText="equipamento"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Equipamento"/>
+                            </f:facet>
+                            <h:outputText value="#{item.equipamento.tipo}"/>
+                        </p:column>
+                        <p:column id="problemacol" filterBy="problema" headerText="problema"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Problema"/>
+                            </f:facet>
+                            <h:outputText value="#{item.problema}"/>
+                        </p:column>
+                        <p:column id="probcol" filterBy="servico.descricao" headerText="problema"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Serviço"/>
+                            </f:facet>
+                            <h:outputLink id="problema" value="#">  
+                                <h:outputText value="#{item.servico.descricao}"/> 
+                            </h:outputLink>  
+                            <p:tooltip for="problema" value="Peça: #{item.peca.descricao} ; Observação de Peças: #{item.obspeca} ; Valor: R$: #{item.orcamento}" showEffect="fade" hideEffect="fade" />  
+                        </p:column>
+                        <p:column id="priocol" filterBy="dataFechamento" headerText="prioridade"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Data Fechamento"/>
+                            </f:facet>
+                            <h:outputLink id="prioridade" value="#">  
+                                <h:outputText value="#{item.dataFechamento}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo" locale="pt_BR" />
+                                </h:outputText>
+                            </h:outputLink>  
+                            <p:tooltip for="prioridade" value="Prioridade: #{item.prioridade}" showEffect="fade" hideEffect="fade" />  
+                        </p:column>
+                        <p:column id="statcol" filterBy="status" headerText="status"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Status"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </p:column>
+                        <p:column id="funcol" filterBy="funcionario.nome" headerText="funcionario"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Responsável"/>
+                            </f:facet>
+                            <h:outputText value="#{item.funcionario.nome}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:graphicImage value="../../../imagens/icones/note.png"/>
+                            <p:commandLink id="basic" value=" Histórico" type="buton" action="#{historicoControle.Listar(item.id)}"/> 
+
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </f:view>
+
+        </ui:define>   
+    </ui:composition>
+
+</html>

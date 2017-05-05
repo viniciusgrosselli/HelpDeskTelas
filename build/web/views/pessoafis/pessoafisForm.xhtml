@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form acceptcharset="ISO-8859-1">
+                    <p:growl id="growlMessages"/>
+                    <p:panelGrid columns="2">
+
+                        <f:facet name="header">
+                            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+                            <h:outputText value="Manutenção de Pessoas Físicas"/>
+                        </f:facet>
+
+                        <h:outputLabel value="Código:" for="id" />
+                        <p:inputText size="4" readonly="true" id="id" value="#{pessoafisControle.objeto.id}" title="Código da Cidade" />
+
+                        <h:outputLabel value="Nome:" for="nome" />
+                        <p:inputText size="25" id="nome"  maxlength="100" value="#{pessoafisControle.objeto.nome}" title="Nome" required="true" requiredMessage="O campo nome  é obrigatório!"/>
+
+                        <h:outputLabel value="Sobrenome:" for="sobrenome" />
+                        <p:inputText size="25" id="sobrenome"  maxlength="100" value="#{pessoafisControle.objeto.sobrenome}" title="Sobrenome" required="true" requiredMessage="O campo sobrenome é obrigatório!"/>
+
+                        <h:outputLabel value="Cidade:" for="cidade" />
+                        <p:autoComplete id="cidade" style="width:600px" dropdown="true"
+                                        multiple="false" forceSelection="true" var="obj"
+                                        itemLabel="#{obj.nome}" itemValue="#{obj}"
+                                        value="#{pessoafisControle.objeto.cidade}"
+                                        converter="#{pessoafisControle.converterCidade}"
+                                        completeMethod="#{pessoafisControle.completeCidade}" requiredMessage="O campo cidade é Obrigatório!" required="true" />
+
+                        <h:outputLabel value="Endereço:" for="endereco" />
+                        <p:inputText size="30" id="endereco"  maxlength="120" value="#{pessoafisControle.objeto.endereco}" title="Endereço" required="true" requiredMessage="O campo endereço é obrigatório!"/>
+
+                        <h:outputLabel value="Bairro:" for="bairro" />
+                        <p:inputText size="15" id="bairro"  maxlength="70" value="#{pessoafisControle.objeto.bairro}" title="Bairro" required="true" requiredMessage="O campo bairro é obrigatório!"/>
+
+                        <h:outputLabel value="CEP:" for="cep" />
+                        <p:inputMask size="9" id="cep"  maxlength="9" mask="99999-999" value="#{pessoafisControle.objeto.cep}" title="CEP" required="true" requiredMessage="O campo CEP é obrigatório!"/>
+
+                        <h:outputLabel value="Telefone:" for="telefone" />
+                        <p:inputMask size="10" id="telefone"  maxlength="14" mask="(99) 9999-9999" value="#{pessoafisControle.objeto.telefone}" title="Telefone"/>
+
+                        <h:outputLabel value="Celular:" for="celular" />
+                        <p:inputMask size="10" id="celular"  maxlength="13" mask="(99) 99999999" value="#{pessoafisControle.objeto.celular}" title="Celular"/>
+
+                        <h:outputLabel value="E-mail:" for="email" />
+                        <p:inputText size="25" id="email"  maxlength="70" value="#{pessoafisControle.objeto.email}"  required="true" title="Email" requiredMessage="O E-mail é obrigatório!"  validatorMessage="O e-mail informado não é válido">
+                            <f:validateRegex pattern="(^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$)"/>
+                        </p:inputText>
+
+                        <h:outputLabel value="RG:" for="rg" />
+                        <p:inputMask size="12" id="rg"  maxlength="10" mask="9999999999" value="#{pessoafisControle.objeto.rg}" title="RG" required="true" requiredMessage="O campo RG é obrigatório!"/>
+
+                        <h:outputLabel value="CPF:" for="cpf" />
+                        <p:inputMask size="12" id="cpf"  maxlength="18" mask="999.999.999-99" value="#{pessoafisControle.objeto.cpf}" title="CPF" required="true" requiredMessage="O campo CPF é obrigatório!">
+                            <f:validator validatorId="cpfValidator"/>
+                        </p:inputMask>
+
+
+                        <f:facet name="footer">
+                            <div align="center">
+                                <p:commandButton value="Cancelar" action="#{pessoafisControle.cancelar()}" immediate="true" ajax="false" />
+                                <p:commandButton action="#{pessoafisControle.gravar()}" value="Salvar" ajax="false" />
+                            </div>
+                        </f:facet>
+                    </p:panelGrid>
+
+                    <p:watermark for="nome" value="Obrigatório"/>
+                    <p:watermark for="sobrenome" value="Obrigatório"/>
+                    <p:watermark for="bairro" value="Obrigatório"/>
+                    <p:watermark for="endereco" value="Obrigatório"/>
+                    <p:watermark for="cep" value="Obrigatório"/>
+                    <p:watermark for="rg" value="Obrigatório"/>
+                    <p:watermark for="telefone" value="Opcional"/>
+                    <p:watermark for="celular" value="Opcional"/>
+                    <p:watermark for="email" value="exemplo@hotmail.com"/>
+                    <p:watermark for="cpf" value="Obrigatório"/>
+                    <p:watermark for="cidade" value="Obrigatório"/>
+
+                </h:form>
+            </f:view>
+
+        </ui:define>    
+    </ui:composition>
+</html>
