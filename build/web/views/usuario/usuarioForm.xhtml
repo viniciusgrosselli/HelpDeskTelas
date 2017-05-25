@@ -6,11 +6,29 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
+
     <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
         <ui:define name="conteudo">
 
             <f:view contentType="text/html" encoding="ISO-8859-1">
-                <h:form acceptcharset="ISO-8859-1">
+
+                <script type="text/javascript">
+                    function confirma() {
+                        var pw1 = document.getElementById("f2:pwd1");
+                        var pw2 = document.getElementById("f2:pwd2");
+                        if (pw1.value != pw2.value){
+                            alert('Senhas não conferem');
+                            pw1.value='';
+                            pw2.value='';
+                        }else{
+                            return true;
+                        }
+                        return false;                        
+                    }
+                </script>                
+
+
+                <h:form acceptcharset="ISO-8859-1" id="f2">
                     <p:growl id="growlMessages"/>
                     <p:panelGrid columns="2">
 
@@ -18,9 +36,6 @@
                             <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
                             <h:outputText value="Manutenção de Usuários"/>
                         </f:facet>
-
-                        <h:outputLabel value="Código:" for="id" />
-                        <p:inputText size="4" readonly="true" id="id" value="#{usuarioControle.objeto.id}" title="Código da Cidade" />
 
                         <p:commandLink id="func" value="Funcionario:" ajax="true" update="funcionario"/> 
                         <p:autoComplete id="funcionario" style="width:600px" dropdown="true"
@@ -33,8 +48,10 @@
                         <h:outputLabel value="Login:" for="login" />
                         <p:inputText size="20" id="login"  maxlength="60" value="#{usuarioControle.objeto.login}" title="Login" required="true" requiredMessage="O campo login é Obrigatório!"/>
 
-                        <h:outputLabel for="pwd1" value="Senha:" />  
+                        <h:outputLabel for="pwd11" value="Senha:" />  
                         <p:password id="pwd1" value="#{usuarioControle.objeto.senha}" feedback="true" required="true" requiredMessage="O campo senha é Obrigatório!"/>  
+                        <h:outputLabel for="pwd22" value="Confirmação de Senha:" />  
+                        <p:password id="pwd2" value="#{usuarioControle.objeto.senha}" feedback="true" required="true" requiredMessage="O campo Confirmação de senha é Obrigatório!"/>  
 
                         <h:outputLabel value="Função:" for="tipo" />
                         <p:selectOneMenu id="tipo" value="#{usuarioControle.objeto.tipo}" required="true" requiredMessage="O campo função é Obrigratório">
@@ -45,8 +62,9 @@
 
                         <f:facet name="footer">
                             <div align="center">
+                                
                                 <p:commandButton value="Cancelar" action="#{usuarioControle.cancelar()}" immediate="true" ajax="false" />
-                                <p:commandButton action="#{usuarioControle.gravar()}" value="Salvar" ajax="false" />
+                                <p:commandButton action="#{usuarioControle.gravar()}" value="Salvar" ajax="false" onclick="return confirma();" />
                             </div>
                         </f:facet>
                     </p:panelGrid>
@@ -54,6 +72,7 @@
                     <p:watermark for="pwd1" value="Obrigatório"/>
                     <p:watermark for="tipo" value="Obrigatório"/>
                     <p:watermark for="login" value="Obrigatório"/>
+                    <p:watermark for="pwd2" value="Obrigatório"/>
                 </h:form>
             </f:view>
 

@@ -91,6 +91,8 @@
 
                             </p:submenu>
 
+
+
                             <p:submenu label="Chamado">
 
                                 <p:menuitem value="Novo Chamado" url="/faces/views/chamado/chamadoForm.xhtml" ajax="false"/> 
@@ -102,20 +104,11 @@
                                 </p:submenu> 
                             </p:submenu>
 
-
-
      
-                                                        <p:submenu label="Relatórios">
-                                <p:menuitem value="Relatório Cidades" action="#{relatorioControle.relCidade}" ajax="false" />
-                                <p:menuitem value="Relatório Estados" action="#{relatorioControle.relEstado}" ajax="false" />
-                                <p:menuitem value="Relatório Peças" action="#{relatorioControle.relPeca}" ajax="false" />
-                                <p:menuitem value="Relatório Serviços" action="#{relatorioControle.relServico}" ajax="false" />
-                                <p:menuitem value="Relatório Usuários" action="#{relatorioControle.relUser}" ajax="false" />
-                                <p:menuitem value="Relatório Clientes" action="#{relatorioControle.relCliente}" ajax="false" />
-                                
-                            </p:submenu>
+                            <p:menuitem value="Agenda" url="/faces/views/agenda/agendaView.xhtml" ajax="false"/>
 
-                            
+
+                            <p:menuitem value="Agenda" url="/faces/views/agenda/agendaView.xhtml" ajax="false"/>
 
                             <p:menuitem value="Sair" action="#{loginControle.sair()}" ajax="false"/>  
                         </p:menubar>

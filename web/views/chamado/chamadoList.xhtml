@@ -103,25 +103,23 @@ and open the template in the editor.
                             <f:facet name="header">
                                 <h:outputText value=""/>
                             </f:facet>
+                            <h:graphicImage value="../../../imagens/icones/money.png"/>
+                            <p:commandLink action="#{chamadoControle.excluir(item.id)}" value=" Orçamento" onclick="
+
+                                           " update="one" ajax="false"  />
+
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
                             <h:graphicImage value="../../../imagens/icones/manutencao.png"/>
                             <p:commandLink action="#{chamadoControle.encerrar(item.id)}" value=" Encerrar Chamado" onclick="
 
                                            " update="one" ajax="false"  />
 
                         </p:column>
-                        
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value=""/>
-                            </f:facet>
-                            <h:graphicImage value="../../../imagens/icones/money.png"/>
-                            <p:commandLink  value=" Orçamento" onclick="
-
-                                           " update="one" ajax="false"  />
-
-                        </p:column>
-
-
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value=""/>
@@ -136,7 +134,7 @@ and open the template in the editor.
                                 <h:outputText value=""/>
                             </f:facet>
                             <h:graphicImage value="../../../imagens/icones/os.png"/>
-                            <p:commandLink  value=" OS" onclick="
+                            <p:commandLink action="#{chamadoControle.os(item.id)}" value=" OS" onclick="
 
                                            " update="one" ajax="false"  />
                         </p:column>

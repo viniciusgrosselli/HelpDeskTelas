@@ -18,14 +18,11 @@
                             <h:outputText value="Manutenção de Estado"/>
                         </f:facet>
 
-                        <h:outputLabel value="Código:" for="id" />
-                        <p:inputText size="4" readonly="true" id="id" value="#{estadoControle.objeto.id}" title="Código da Estado" />
-
                         <h:outputLabel value="Nome:" for="nome" />
-                        <p:inputText size="30" id="nome" value="#{estadoControle.objeto.nome}" title="Nome" required="true" requiredMessage="O nome do Estado é obrigatório!" maxlength="100"/>
+                        <p:inputText size="20" id="nome" value="#{estadoControle.objeto.nome}" title="Nome" required="true" requiredMessage="O nome do Estado é obrigatório!" maxlength="100"/>
 
                         <h:outputLabel value="UF:" for="uf" />
-                        <p:inputText size="10" id="uf" value="#{estadoControle.objeto.uf}" title="UF" required="true" requiredMessage="A UF do Estado é obrigatória!" maxlength="2"/>
+                        <p:inputText size="20" id="uf" value="#{estadoControle.objeto.uf}" title="UF" required="true" requiredMessage="A UF do Estado é obrigatória!" maxlength="2"/>
 
                         <f:facet name="footer">
                             <div align="center">

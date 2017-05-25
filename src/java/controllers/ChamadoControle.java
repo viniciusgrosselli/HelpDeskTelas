@@ -72,6 +72,13 @@ public final class ChamadoControle {
         objeto = em.find(Chamado.class, id);
         return "chamadoOS";
     }
+    
+        public String excluir(Integer id) {
+        objeto = em.find(Chamado.class, id);
+        objeto.setDataAlteracao(new Date());
+        objeto.setDataOrcamento(new Date());
+        return "chamadoFormOrcamento";
+    }
 
     public String Listar() {
 

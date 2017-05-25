@@ -100,6 +100,7 @@ public final class UsuarioControle {
         return "";
 
     }
+    
 
     public String excluir(Integer id) {
         objeto = em.find(Usuario.class, id);
