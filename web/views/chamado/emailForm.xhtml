@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form acceptcharset="ISO-8859-1">
+                    <p:growl id="growlMessages"/>
+
+                    <h:body>
+                        
+                    <p:panelGrid columns="1">
+                        <p:commandButton action="#{historicoControle.Voltar()}" value="Voltar para Chamados" ajax="false" />
+                    </p:panelGrid>
+                        
+                        <p:outputPanel id="outputPanelMail">
+                            <p:panel header="Envio de e-mail" style="width: 550px">
+                                <p:messages/>
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="Para: "/>
+                                    <h:inputText value="#{indexController.destino}" size="50" readonly="true"/>
+                                    <h:outputText value="Título: "/>
+                                    <h:inputText value="#{indexController.titulo}" size="50" readonly="true"/>
+                                    <h:outputText value="Mensagem: "/>
+                                    <h:inputTextarea value="#{indexController.mensagem}" cols="60" rows="10" readonly="true"/>
+                                </h:panelGrid>
+                                <p:commandButton value="Enviar e-mail" image="ui-icon-mail-closed" action="#{indexController.enviaEmail}" update="outputPanelMail"/>
+                             </p:panel>
+                        </p:outputPanel>
+
+                    </h:body>
+
+
+                </h:form>
+            </f:view>
+
+        </ui:define>    
+    </ui:composition>
+</html>

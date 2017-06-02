@@ -10,7 +10,26 @@
         <ui:define name="conteudo">
 
             <f:view contentType="text/html" encoding="ISO-8859-1">
-                <h:form acceptcharset="ISO-8859-1">
+                
+                                <script type="text/javascript">
+
+
+                    function valor() {
+
+                        var valor = document.getElementById("f1:valor");
+                        if (valor.value > 0) {
+                            return true;
+                        } else {
+                            alert('Valor deve ser um número de valor positivo!');
+                            valor.value = '';
+                        }
+                        return false;
+                    }
+
+
+
+                </script>  
+                <h:form acceptcharset="ISO-8859-1" id="f1">
                     <p:growl id="growlMessages"/>
                     <p:panelGrid columns="2">
                         <f:facet name="header">
@@ -22,7 +41,7 @@
                         <p:inputText  id="descricao" value="#{servicoControle.objeto.descricao}" title="Descrição" required="true" requiredMessage="A descrição é necessária!" maxlength="100"/>
                         
                         <h:outputLabel value="Valor:" for="valor" />
-                        <p:inputText  id="valor" value="#{servicoControle.objeto.valor}" title="Valor" required="true" requiredMessage="O valor é necessário!" maxlength="100"/>
+                        <p:inputText  id="valor"  value="#{servicoControle.objeto.valor}" title="Valor" required="true" requiredMessage="O valor é necessário!" maxlength="100"/>
                         
                         <h:outputLabel value="Tipo do Equipamento:" for="tipo_equipamento" />
                         <p:autoComplete id="tipo" style="width:600px" dropdown="true"
@@ -35,7 +54,7 @@
 
                             <div align="center">
                                 <p:commandButton value="Cancelar" action="#{servicoControle.cancelar()}" immediate="true" ajax="false" />
-                                <p:commandButton action="#{servicoControle.gravar}" value="Gravar" ajax="false"/>
+                                <p:commandButton action="#{servicoControle.gravar}" value="Gravar" ajax="false" onclick="valor()"/>
                             </div>
 
                         </f:facet>

@@ -10,7 +10,36 @@
         <ui:define name="conteudo">
 
             <f:view contentType="text/html" encoding="ISO-8859-1">
-                <h:form acceptcharset="ISO-8859-1">
+
+                <script type="text/javascript">
+                    function garantia() {
+                        var garantia = document.getElementById("f1:garantia");
+                        if (garantia.value > 0) {
+                            return true;
+                        } else {
+                            alert('Garantia deve ser um número de valor positivo!');
+                            garantia.value = '';
+                        }
+                        return false;
+                    }
+
+                    function valor() {
+
+                        var valor = document.getElementById("f1:valor");
+                        if (valor.value > 0) {
+                            return true;
+                        } else {
+                            alert('Valor deve ser um número de valor positivo!');
+                            valor.value = '';
+                        }
+                        return false;
+                    }
+
+
+
+                </script>  
+
+                <h:form acceptcharset="ISO-8859-1" id="f1">
                     <p:growl id="growlMessages"/>
                     <p:panelGrid columns="2">
 
@@ -23,14 +52,14 @@
                         <p:inputText size="20" id="descricao" value="#{pecaControle.objeto.descricao}" title="Descrição" required="true" requiredMessage="A descrição é obrigatória!" maxlength="40"/>
 
                         <h:outputLabel value="Garantia:" for="garantia" />
-                        <p:inputText id="garantia" value="#{pecaControle.objeto.garantia}" title="Garantia" required="true" requiredMessage="A Garantia é obrigatória!" maxlength="40"/>
-                        
+                        <p:inputText id="garantia" value="#{pecaControle.objeto.garantia}" title="Garantia" required="true" requiredMessage="A Garantia é obrigatória!" maxlength="40" />
+
                         <h:outputLabel value="Marca:" for="marca" />
                         <p:inputText size="20" id="marca" value="#{pecaControle.objeto.marca}" title="Marca" required="true" requiredMessage="A marca é obrigatória!" maxlength="40"/>
 
                         <h:outputLabel value="Valor:" for="valor" />
                         <p:inputText id="valor" value="#{pecaControle.objeto.valor}" title="Valor" required="true" requiredMessage="O valor é obrigatório!" maxlength="40"/>
-                        
+
                         <h:outputLabel value="Tipo do Equipamento:" for="tipo_equipamento" />
                         <p:autoComplete id="tipo" style="width:600px" dropdown="true"
                                         multiple="false" forceSelection="true" var="obj"
@@ -42,7 +71,8 @@
                         <f:facet name="footer">
                             <div align="center">
                                 <p:commandButton value="Cancelar" action="#{pecaControle.cancelar()}" immediate="true" ajax="false" />
-                                <p:commandButton action="#{pecaControle.gravar}" value="Gravar" ajax="false"/>
+                                <p:commandButton action="#{pecaControle.gravar}" value="Gravar" ajax="false" onclick="garantia();
+                                        valor();"/>
                             </div>
                         </f:facet>
                     </p:panelGrid>

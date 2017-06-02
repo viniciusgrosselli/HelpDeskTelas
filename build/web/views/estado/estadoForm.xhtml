@@ -9,7 +9,15 @@
     <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
         <ui:define name="conteudo">
 
-            <f:view contentType="text/html" encoding="ISO-8859-1">
+            <f:view contentType="text/html" encoding="ISO-8859-1" id="f1">
+                <script type="text/javascript">
+
+
+
+
+
+
+                </script>  
                 <h:form acceptcharset="ISO-8859-1">
                     <p:growl id="growlMessages"/>
                     <p:panelGrid columns="2">
@@ -26,7 +34,7 @@
 
                         <f:facet name="footer">
                             <div align="center">
-                                <p:commandButton value="Cancelar" action="#{estadoControle.cancelar()}" immediate="true" ajax="false" />
+                                <p:commandButton value="Cancelar" action="#{estadoControle.cancelar()}" immediate="true" ajax="false"  />
                                 <p:commandButton action="#{estadoControle.gravar}" value="Gravar" ajax="false"/>
                             </div>
                         </f:facet>

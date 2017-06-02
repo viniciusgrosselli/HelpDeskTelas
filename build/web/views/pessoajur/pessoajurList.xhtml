@@ -23,63 +23,37 @@ and open the template in the editor.
 
                     <p:dataTable id="listagem" value="#{pessoajurControle.lista}" var="item" paginator="true" rows="10" filteredValue="#{pessoajurControle.filtroPjur}">
 
-                        <p:column id="idcol" filterBy="id" headerText="id"  filterMatchMode="exact">
-                            <f:facet name="header">
-                                <h:outputText value="Código"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                        <p:column filterBy="#{item.id}" headerText="Id"  filterMatchMode="contains">
+                            <h:outputText value="#{item.id}" />
                         </p:column>
 
-                        <p:column id="nomecol" filterBy="nome" headerText="nome"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Nome"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nome}"/>
+                         <p:column filterBy="#{item.nome}" headerText="Nome"  filterMatchMode="contains">
+                            <h:outputText value="#{item.nome}" />
                         </p:column>
 
-                        <p:column id="sobcol" filterBy="sobrenome" headerText="sobrenome"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Sobrenome"/>
-                            </f:facet>
-                            <h:outputText value="#{item.sobrenome}"/>
+                        <p:column filterBy="#{item.sobrenome}" headerText="Sobrenome"  filterMatchMode="contains">
+                            <h:outputText value="#{item.sobrenome}" />
                         </p:column>
 
-                        <p:column id="endcol" filterBy="endereco" headerText="endereco"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Endereço"/>
-                            </f:facet>
-                            <h:outputLink id="end" value="#">
-                                <h:outputText value="#{item.endereco}"/>
-                            </h:outputLink>
-                            <p:tooltip for="end" value="Cidade: #{item.cidade.nome} ; Bairro: #{item.bairro} ; CEP: #{item.cep};" showEffect="fade" hideEffect="fade" />
+                        <p:column filterBy="#{item.endereco}" headerText="Endereço"  filterMatchMode="contains">
+                            <h:outputText value="#{item.endereco}" />
                         </p:column>
 
-                        <p:column id="cnpjcol" filterBy="cnpj" headerText="cnpj"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="CNPJ"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cnpj}"/>
+
+                        <p:column filterBy="#{item.cnpj}" headerText="CNPJ"  filterMatchMode="contains">
+                            <h:outputText value="#{item.cnpj}" />
                         </p:column>
 
-                        <p:column id="telcol" filterBy="telefone" headerText="telefone"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Telefone"/>
-                            </f:facet>
-                            <h:outputText value="#{item.telefone}"/>
+                       <p:column filterBy="#{item.telefone}" headerText="Telefone"  filterMatchMode="contains">
+                            <h:outputText value="#{item.telefone}" />
                         </p:column>
 
-                        <p:column id="celcol" filterBy="celular" headerText="celular"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Celular"/>
-                            </f:facet>
-                            <h:outputText value="#{item.celular}"/>
+                          <p:column filterBy="#{item.celular}" headerText="Celular"  filterMatchMode="contains">
+                            <h:outputText value="#{item.celular}" />
                         </p:column>
 
-                        <p:column id="emailcol" filterBy="email" headerText="email"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Email"/>
-                            </f:facet>
-                            <h:outputText value="#{item.email}"/>
+                        <p:column filterBy="#{item.email}" headerText="Email"  filterMatchMode="contains">
+                            <h:outputText value="#{item.email}" />
                         </p:column>
 
                         <p:column>

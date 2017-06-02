@@ -22,23 +22,17 @@ and open the template in the editor.
                     </p:panelGrid>
 
                     <p:dataTable id="listagem" value="#{equipamentoControle.lista}" var="item" paginator="true" rows="10" filteredValue="#{equipamentoControle.filtroEquipamento}">
-                        <p:column id="idcol" filterBy="id" headerText="id"  filterMatchMode="exact">
-                            <f:facet name="header">
-                                <h:outputText value="Código"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                        
+                          <p:column filterBy="#{item.id}" headerText="Id"  filterMatchMode="contains">
+                            <h:outputText value="#{item.id}" />
                         </p:column>
-                        <p:column id="desccol" filterBy="descricao" headerText="descricao"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Descrição"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descricao}"/>
+                       
+                         <p:column filterBy="#{item.descricao}" headerText="Descricão"  filterMatchMode="contains">
+                            <h:outputText value="#{item.descricao}" />
                         </p:column>
-                        <p:column id="tipcol" filterBy="tipo" headerText="tipo"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Tipo do Equipamento"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tipo}"/>
+                        
+                        <p:column filterBy="#{item.tipo}" headerText="Tipo  "  filterMatchMode="contains">
+                            <h:outputText value="#{item.tipo    }" />
                         </p:column>
 
                         <p:column>

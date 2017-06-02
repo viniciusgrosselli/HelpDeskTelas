@@ -26,69 +26,32 @@ and open the template in the editor.
 
                     <p:dataTable id="listagem" value="#{chamadoControle.lista}" var="item"  paginator="true" rows="10" filteredValue="#{chamadoControle.filtroChamado}" style="width: 100%">
 
-                        <p:column id="idcol" filterBy="id" headerText="id"  filterMatchMode="exact">  
-                            <f:facet name="header">
-                                <h:outputText value="Código"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                        <p:column filterBy="#{item.id}" headerText="Id"  filterMatchMode="contains" >
+                            <h:outputText value="#{item.id}" />
                         </p:column>
 
-                        <p:column id="nomecol" filterBy="pessoa.nome" headerText="nome"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Cliente"/>
-                            </f:facet>
-                            <h:outputLink id="pessoa" value="#">  
-                                <h:outputText value="#{item.pessoa.nome}"/> 
-                            </h:outputLink>  
-                            <p:tooltip for="pessoa"  value="Cidade: #{item.pessoa.cidade.nome} ; 
-                                       Endereço: #{item.pessoa.endereco} ; 
-                                       Bairro: #{item.pessoa.bairro} ; 
-                                       Telefone: #{item.pessoa.telefone};
-                                       Celular: #{item.pessoa.celular} ;               
-                                       " showEffect="fade" hideEffect="fade" />
+                        <p:column filterBy="#{item.pessoa.nome}" headerText="Cliente"  filterMatchMode="contains">
+                            <h:outputText value="#{item.pessoa.nome}" />
                         </p:column>
 
-                        <p:column id="equicol" filterBy="equipamento.tipo" headerText="equipamento"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Equipamento"/>
-                            </f:facet>
-                            <h:outputText value="#{item.equipamento.tipo}"/>
+                        <p:column filterBy="#{item.equipamento.tipo}" headerText="Equipamento"  filterMatchMode="contains">
+                            <h:outputText value="#{item.equipamento.tipo}" />
                         </p:column>
 
-                        <p:column id="probcol" filterBy="problema" headerText="problema"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Problema Relatado"/>
-                            </f:facet>
-                            <h:outputLink id="problema" value="#">  
-                                <h:outputText value="#{item.problema}"/> 
-                            </h:outputLink>  
-                            <p:tooltip for="problema" value="#{item.observacoes}" showEffect="fade" hideEffect="fade" />  
+                        <p:column filterBy="#{item.problema}" headerText="Problema"  filterMatchMode="contains">
+                            <h:outputText value="#{item.problema}" />
                         </p:column>
 
-                        <p:column id="priocol" filterBy="prioridade" headerText="prioridade"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Prioridade"/>
-                            </f:facet>
-                            <h:outputLink id="pri" value="#"> 
-                                <h:outputText value="#{item.prioridade}"/> 
-                            </h:outputLink>
-                            <p:tooltip for="pri" value="#{item.dataMarcada}">
-                                <f:convertDateTime pattern="dd/MM/yyyy : HH:mm" timeZone="America/Sao_Paulo" locale="pt_BR" />
-                            </p:tooltip>
+                        <p:column filterBy="#{item.prioridade}" headerText="Prioridade"  filterMatchMode="contains">
+                            <h:outputText value="#{item.prioridade}" />
                         </p:column>
 
-                        <p:column id="statcol" filterBy="status" headerText="status"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Status"/>
-                            </f:facet>
-                            <h:outputText value="#{item.status}"/>
+                        <p:column filterBy="#{item.status}" headerText="Equipamento"  filterMatchMode="contains">
+                            <h:outputText value="#{item.status}" />
                         </p:column>
 
-                        <p:column id="funcol" filterBy="funcionario.nome" headerText="funcionario"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Responsável"/>
-                            </f:facet>
-                            <h:outputText value="#{item.funcionario.nome}"/>
+                        <p:column filterBy="#{item.funcionario.nome}" headerText="Responsavel"  filterMatchMode="contains">
+                            <h:outputText value="#{item.funcionario.nome}" />
                         </p:column>
 
                         <p:column>
@@ -144,7 +107,7 @@ and open the template in the editor.
                                 <h:outputText value=""/>
                             </f:facet>
                             <h:graphicImage value="../../../imagens/icones/email.png"/>
-                            <p:commandLink id="basic1" value=" E-mail" action="#{indexController.email(item.id)}" ajax="false" onclick=" "/> 
+                            <p:commandLink id="basic1" value=" E-mail" action="#{indexController.email(item.id)}" ajax="false" onclick=""/> 
                         </p:column>
 
                     </p:dataTable>

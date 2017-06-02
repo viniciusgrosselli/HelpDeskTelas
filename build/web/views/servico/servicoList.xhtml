@@ -23,34 +23,21 @@ and open the template in the editor.
 
                     <p:dataTable id="listagem" value="#{servicoControle.lista}" var="item" paginator="true" rows="10" filteredValue="#{servicoControle.filtroServico}">
 
-                        <p:column id="idcol" filterBy="id" headerText="id"  filterMatchMode="exact">
-                            <f:facet name="header">
-                                <h:outputText value="Código"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                        <p:column filterBy="#{item.id}" headerText="Id"  filterMatchMode="contains">
+                            <h:outputText value="#{item.id}" />
                         </p:column>
 
-                        <p:column id="desccol" filterBy="descricao" headerText="descricao"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Serviço"/>
-                            </f:facet>
-                            <h:outputText value="#{item.descricao}"/>
-                        </p:column>
-                        
-                        <p:column id="valcol" filterBy="valor" headerText="valor"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Valor"/>
-                            </f:facet>
-                            <h:outputText value="#{item.valor}"/>
+                        <p:column filterBy="#{item.descricao}" headerText="Serviço"  filterMatchMode="contains">
+                            <h:outputText value="#{item.descricao}" />
                         </p:column>
 
-                        <p:column id="nomecol" filterBy="equipamento.tipo" headerText="tipo"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Equipamento"/>
-                            </f:facet>
-                            <h:outputText value="#{item.equipamento.tipo}"/>
+                        <p:column filterBy="#{item.valor}" headerText="Valor"  filterMatchMode="contains">
+                            <h:outputText value="#{item.valor}" />
                         </p:column>
 
+                        <p:column filterBy="#{item.equipamento.tipo}" headerText="Equipamento"  filterMatchMode="contains">
+                            <h:outputText value="#{item.equipamento.tipo}" />
+                        </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value=""/>

@@ -21,25 +21,17 @@ and open the template in the editor.
                     </p:panelGrid>
                     <p:dataTable id="listagem" value="#{estadoControle.lista}" var="item" paginator="true" rows="10" filteredValue="#{estadoControle.filtroEstado}">
 
-                        <p:column id="idcol" filterBy="id" headerText="id"  filterMatchMode="exact">
-                            <f:facet name="header">
-                                <h:outputText value="Código"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                        <p:column filterBy="#{item.id}" headerText="Id"  filterMatchMode="contains">
+                            <h:outputText value="#{item.id}" />
                         </p:column>
 
-                        <p:column id="nomecol" filterBy="nome" headerText="nome"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Nome"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nome}"/>
+                        <p:column filterBy="#{item.nome}" headerText="Nome"  filterMatchMode="contains">
+                            <h:outputText value="#{item.nome}" />
                         </p:column>
 
-                        <p:column id="ufcol" filterBy="uf" headerText="uf"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="UF"/>
-                            </f:facet>
-                            <h:outputText value="#{item.uf}"/>
+
+                        <p:column filterBy="#{item.uf}" headerText="Uf"  filterMatchMode="contains">
+                            <h:outputText value="#{item.uf}" />
                         </p:column>
 
                         <p:column>

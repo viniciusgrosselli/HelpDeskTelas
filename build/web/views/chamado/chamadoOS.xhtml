@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+
+                <p:panelGrid columns="2">
+
+                    <p:commandButton action="#{historicoControle.Voltar()}" value="Voltar para Chamados"/>
+
+                    <h:commandButton value="Imprimir" type="button" image="#{pageContext.request.contextPath}/imagens/imagens/imp.jpg" >  
+                        <p:printer target="one" />  
+                    </h:commandButton>
+
+                </p:panelGrid>
+
+                <h:form id="one">
+                    <p:growl id="growlMessages"/>
+
+                    <p:panelGrid columns="4" id="painel" style="width: 100%">
+                        <f:facet name="header">
+                            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+                            <h:outputText value="Ordem de Serviço"/>
+                        </f:facet>
+                        <h:outputLabel value="OS:" for="id" />
+                        <h:outputLabel id="id" value="#{chamadoControle.objeto.id}" title="Código do Chamado" />
+                        <h:outputLabel value="Data de Abertura:"/>
+                        <p:calendar size="15" pattern="dd/MM/yyyy : HH:mm" value="#{chamadoControle.objeto.dataAbertura}"/>
+                        <h:outputLabel value="Cliente:"/>
+                        <h:outputLabel value="#{chamadoControle.objeto.pessoa.nome}"/>
+                        <h:outputLabel value="#{chamadoControle.objeto.pessoa.sobrenome}"/>
+                        <h:outputLabel value=""/>
+                        <h:outputLabel value="Endereço:"/>
+                        <h:outputLabel value="#{chamadoControle.objeto.pessoa.endereco}"/>
+                        <h:outputLabel value="#{chamadoControle.objeto.pessoa.bairro}"/>
+                        <h:outputLabel value="#{chamadoControle.objeto.pessoa.cidade.nome}"/>
+                        <h:outputLabel value="Contato:"/>
+                        <h:outputLabel value="#{chamadoControle.objeto.pessoa.telefone}"/>
+                        <h:outputLabel value="#{chamadoControle.objeto.pessoa.celular}"/>
+                        <h:outputLabel value="#{chamadoControle.objeto.pessoa.email}"/>
+                        <h:outputLabel value="Equipamento:"/>
+                        <h:outputLabel value="#{chamadoControle.objeto.equipamento.tipo}" />
+                        <h:outputLabel value=""/>
+                        <h:outputLabel value=""/>
+                        <h:outputLabel value="Problema:"/>
+                        <h:outputLabel value="#{chamadoControle.objeto.problema}" />
+                        <h:outputLabel value="Observações:" for="observacoes" />
+                        <h:outputLabel value="#{chamadoControle.objeto.observacoes}" title="Observações:" />
+                        <h:outputLabel value="Prioridade:" for="prioridade" />
+                        <h:outputLabel value="#{chamadoControle.objeto.prioridade}" />
+                        <h:outputLabel value="Data para Atendimento:" /> 
+                        <p:calendar pattern="dd/MM/yyyy HH:mm" value="#{chamadoControle.objeto.dataMarcada}"/>
+                    </p:panelGrid>
+                    <p:panelGrid columns="1" id="painel1" style="width: 100%">
+                        <h:outputLabel value="-"/>    
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+                        <h:outputLabel value="-"/> 
+
+                    </p:panelGrid>
+                    <p:panelGrid columns="4" id="painel2" style="width: 100%">
+                        <h:outputLabel value="Valor do Atendimento:"/>
+                        <h:outputLabel value="R$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+                        <h:outputLabel value="Forma de Pagamento:"/>
+                        <h:outputLabel value=""/>
+                        <h:outputLabel value="Responsável:" />
+                        <h:outputLabel value="#{chamadoControle.objeto.funcionario.nome}" />
+                        <h:outputLabel value="Assinatura: " /> 
+                        <h:outputLabel value="________________________________________" /> 
+                        <h:outputLabel value="" />
+                        <h:outputLabel value="" />
+                        <h:outputLabel value="Assinatura do Cliente: " />
+                        <h:outputLabel value="________________________________________" /> 
+                    </p:panelGrid>    
+
+
+                </h:form>
+
+            </f:view>
+
+        </ui:define>    
+    </ui:composition>
+</html>

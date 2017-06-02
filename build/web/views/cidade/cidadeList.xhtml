@@ -24,23 +24,14 @@ and open the template in the editor.
 
 
                     <p:dataTable id="listagem" value="#{cidadeControle.lista}" var="item" paginator="true" rows="10" filteredValue="#{cidadeControle.filtroCidade}">
-                        <p:column id="idcol" filterBy="id" headerText="id"  filterMatchMode="exact">
-                            <f:facet name="header">
-                                <h:outputText value="Código"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                        <p:column filterBy="#{item.id}" headerText="Id"  filterMatchMode="contains">
+                            <h:outputText value="#{item.id}" />
                         </p:column>
-                        <p:column id="nomecol" filterBy="nome" headerText="nome"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Nome"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nome}"/>
+                        <p:column filterBy="#{item.nome}" headerText="Nome"  filterMatchMode="contains">
+                            <h:outputText value="#{item.nome}" />
                         </p:column>
-                        <p:column id="estcol" filterBy="estado.nome" headerText="estado"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Estado"/>
-                            </f:facet>
-                            <h:outputText value="#{item.estado.nome}"/>
+                        <p:column filterBy="#{item.estado.nome}" headerText="Estado"  filterMatchMode="contains">
+                            <h:outputText value="#{item.estado.nome}" />
                         </p:column>
 
                         <p:column>
