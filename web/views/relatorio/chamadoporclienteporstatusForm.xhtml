@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/template/template_#{loginControle.usuarioLogado.tipo}.xhtml" >
+        <ui:define name="conteudo">
+
+            <f:view contentType="text/html" encoding="ISO-8859-1">
+                <h:form acceptcharset="ISO-8859-1">
+                    <p:growl id="growlMessages"/>
+                    <p:panelGrid columns="2">
+
+                        <f:facet name="header">
+                            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+                            <h:outputText value="Relatório de Chamados Cliente x Status"/>
+                        </f:facet>
+
+                        <h:outputLabel value="Prioridade:" for="prioridade" />
+                        <p:selectOneMenu id="status" value="#{relatorioControle.status}" required="true" requiredMessage="O campo status é Obrigatório" >
+                            <f:selectItem itemLabel="Aberto" itemValue="Aberto" />
+                            <f:selectItem itemLabel="Orçamento Aprovado" itemValue="Orçamento Aprovado"/>
+                            <f:selectItem itemLabel="Aguardando Aprovação de Orçamento" itemValue="Aguardando Aprovação" />
+                            <f:selectItem itemLabel="Orçamento Não Aprovado" itemValue="Orçamento não Aprovado" />
+                            <f:selectItem itemLabel="Encerrado" itemValue="Encerrado" />
+                        </p:selectOneMenu>
+                        <h:outputLabel value="Cliente:" for="cliente" />
+                        <p:inputText size="30" id="cliente"  maxlength="60" value="#{relatorioControle.nome}" title="Nome" required="true" requiredMessage="O cliente é Obrigatório!"/>
+
+
+                        <f:facet name="footer">
+                            <div align="center">
+                                <p:commandButton action="#{relatorioControle.relChamado3()}" value="Gerar Relatório" ajax="false" />
+                            </div>
+                        </f:facet>
+
+                    </p:panelGrid>
+                    <p:watermark for="cliente" value="Obrigatório"/>
+                </h:form>
+            </f:view>
+
+        </ui:define>    
+    </ui:composition>
+</html>

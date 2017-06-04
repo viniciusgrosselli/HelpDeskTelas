@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relChamado4" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6381c2d3-8ab9-4431-89d4-96c0f6acb1f3">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="NOME" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$F{pessoa_nome}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     chamado."id" AS chamado_id,
+     chamado."dataabertura" AS chamado_dataabertura,
+     chamado."funcionario" AS chamado_funcionario,
+     chamado."problema" AS chamado_problema,
+     chamado."status" AS chamado_status,
+     pessoa."nome" AS pessoa_nome
+FROM
+     "public"."pessoa" pessoa INNER JOIN "public"."chamado" chamado ON pessoa."id" = chamado."funcionario"
+WHERE pessoa.nome = $P{NOME}]]>
+	</queryString>
+	<field name="chamado_id" class="java.lang.Integer"/>
+	<field name="chamado_dataabertura" class="java.sql.Timestamp"/>
+	<field name="chamado_funcionario" class="java.lang.Integer"/>
+	<field name="chamado_problema" class="java.lang.String"/>
+	<field name="chamado_status" class="java.lang.String"/>
+	<field name="pessoa_nome" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="6175f336-75b1-47e7-bd43-209643b16c09"/>
+				<staticText>
+					<reportElement x="20" y="20" width="339" height="43" forecolor="#FFFFFF" uuid="cf9e94ab-0cbb-41ea-85d8-6e1a231ce12c"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório Chamados]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="8d9dbb4a-dfd4-4f1a-8d09-69769c9b3f4f"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="49da433d-ddf2-441f-afb4-b5a723504799"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="92" y="0" width="136" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="6ac810b6-763e-43c1-a6ea-c2061026dcc1"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Abertura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="228" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ca86271b-92f2-4ad2-8ddd-5699ac24a5e0"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Problema]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="339" y="0" width="121" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="03b7bcd4-a7a0-4fb5-b8cc-977be44b5d59"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d019537e-5bfd-400f-b4f4-c17696bf22df"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsável]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="0ab0631d-e01e-4e56-a652-e66ea76b1e84"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="92" height="20" uuid="b75e93c2-5734-49f2-a404-0c7f7b2806f8"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{chamado_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="92" y="0" width="136" height="20" uuid="fc88d96c-bf7d-4824-ba11-15686c7d182c"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{chamado_dataabertura}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="228" y="0" width="111" height="20" uuid="655218e2-c0d5-424d-9030-331a9e40b02f"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{chamado_problema}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="339" y="0" width="121" height="20" uuid="15fe6167-3c65-469f-9479-77a21e564eb9"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{chamado_status}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="460" y="0" width="92" height="20" uuid="978d024b-d32c-4a12-b681-3d5af52df712"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="720d04c3-2253-4d17-8cf8-6d6a3a82a5f4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="6ef5e9d4-b3b4-4082-87c2-3d895f839f52"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="a0bb32bc-e433-4232-81cc-a8addbd0746c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

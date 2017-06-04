@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Vini/Documents/NetBeansProjects/HelpDeskTelas/web/views/chamado/chamadoList.xhtml</file>
-            <file>file:/C:/Users/Vini/Documents/NetBeansProjects/HelpDeskTelas/web/views/servico/servicoForm.xhtml</file>
-            <file>file:/C:/Users/Vini/Documents/NetBeansProjects/HelpDeskTelas/web/views/pessoafis/pessoafisForm.xhtml</file>
-            <file>file:/C:/Users/Vini/Documents/NetBeansProjects/HelpDeskTelas/web/views/equipamento/equipamentoForm.xhtml</file>
-            <file>file:/C:/Users/Vini/Documents/NetBeansProjects/HelpDeskTelas/web/views/cidade/cidadeList.xhtml</file>
-            <file>file:/C:/Users/Vini/Documents/NetBeansProjects/HelpDeskTelas/web/views/chamado/chamadoFormOrcamento.xhtml</file>
+            <file>file:/C:/Users/Vini/Documents/NetBeansProjects/HelpDeskTelas/web/template/template_Administrador.xhtml</file>
+            <file>file:/C:/Users/Vini/Documents/NetBeansProjects/HelpDeskTelas/src/java/controllers/RelatorioControle.java</file>
         </group>
     </open-files>
 </project-private>
