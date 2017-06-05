@@ -24,9 +24,9 @@ and open the template in the editor.
                         <p:commandButton action="#{chamadoControle.incluir()}" value="Incluir novo Chamado" ajax="false" />
                     </p:panelGrid>
 
-                    <p:dataTable id="listagem" value="#{chamadoControle.lista}" var="item"  paginator="true" rows="10" filteredValue="#{chamadoControle.filtroChamado}" style="width: 100%">
+                    <p:dataTable id="listagem" value="#{chamadoControle.lista}" var="item"  paginator="true" rows="10" filteredValue="#{chamadoControle.filtroChamado}" style="width: 110%">
 
-                        <p:column filterBy="#{item.id}" headerText="Id"  filterMatchMode="contains" >
+                        <p:column  filterBy="#{item.id}" headerText="Id"  filterMatchMode="contains" >
                             <h:outputText value="#{item.id}" />
                         </p:column>
 
